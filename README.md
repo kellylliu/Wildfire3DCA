@@ -42,7 +42,6 @@ This project implements a **three-dimensional stochastic Cellular Automaton (CA)
 
 ### Running the Model  
 - Adjust CA parameters via input fields  
-- Run sections in sequence: CA setup ➜ Fire evolution ➜ Suppression  
 - View results via 3D plots and performance metrics
 
 ### Customization  
