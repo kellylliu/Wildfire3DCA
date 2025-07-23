@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project implements a **three-dimensional stochastic Cellular Automaton (CA)** to model wildfire spread and optimize suppressant deployment. Highlights include:
+This project implements a **three-dimensional Cellular Automaton (CA)** to model wildfire spread and optimize suppressant deployment. Highlights include:
 
 - A fully 3D CA model extending classic 2D forest-fire frameworks  
 - Realistic wildfire dynamics: ignition probability, neighbor interaction, environmental layering  
