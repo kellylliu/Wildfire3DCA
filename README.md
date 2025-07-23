@@ -2,12 +2,7 @@
 
 ## Overview
 
-This project implements a **three-dimensional Cellular Automaton (CA)** to model wildfire spread and optimize suppressant deployment. Highlights include:
-
-- A fully 3D CA model extending classic 2D forest-fire frameworks  
-- Realistic wildfire dynamics: ignition probability, neighbor interaction, environmental layering  
-- Visualization of fire propagation through 3D grids  
-- Algorithm to identify optimal suppressant placement for containment
+This project implements a **three-dimensional Cellular Automaton (CA)** to model wildfire spread and optimize suppressant deployment. We create a fully 3D CA model extending classic 2D forest-fire frameworks with realistic wildfire dynamics such as ignition probability, neighbor interaction, and environmental layering, visualization of fire propagation through 3D grids, and an algorithm to identify optimal suppressant placement for containment.
 
 ---
 
@@ -27,7 +22,7 @@ This project implements a **three-dimensional Cellular Automaton (CA)** to model
 - Simulates suppression outcomes; tunes placement to minimize spread while conserving resources
 
 ### 4. Interactive UI Controls  
-- Adjustable parameters: ignition probability, neighborhood radius, suppressant capacity  
+- Adjustable parameters: ignition probability, neighborhood radius, suppressant capacity, fire ignition starting point
 - Dynamic plots that update CA evolution and suppression efficacy in real-time
 
 ---
