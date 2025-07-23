@@ -1,13 +1,5 @@
 # Modeling 3D Fire Spread Using Cellular Automata
 
-**Computational Essay / Wolfram Notebook Project**
-
-**Author:** Kelly Liu (Valley Christian High School)  
-**Origin:** Wolfram Community Staff Pick & Featured Contributor  
-**Link:** [Wolfram Community Post](https://community.wolfram.com/groups/-/m/t/3502932)
-
----
-
 ## Overview
 
 This project implements a **three-dimensional stochastic Cellular Automaton (CA)** to model wildfire spread and optimize suppressant deployment. Highlights include:
