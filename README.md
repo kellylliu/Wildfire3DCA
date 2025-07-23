@@ -39,7 +39,6 @@ This project implements a **three-dimensional stochastic Cellular Automaton (CA)
 
 ### Setup  
 1. Clone or download this repo  
-2. Open `Modeling3DFire.nb` in your Wolfram environment
 
 ### Running the Model  
 - Adjust CA parameters via input fields  
