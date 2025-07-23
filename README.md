@@ -11,7 +11,7 @@ This project implements a **three-dimensional stochastic Cellular Automaton (CA)
 
 ---
 
-## 🧩 Methods & Features
+## Methods & Features
 
 ### 1. Cellular Automaton Mechanics  
 - Discrete 3D lattice of cubic cells  
