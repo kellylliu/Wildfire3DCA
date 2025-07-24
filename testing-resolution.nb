@@ -1,0 +1,64 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[      1794,         56]
+NotebookOptionsPosition[      1223,         38]
+NotebookOutlinePosition[      1625,         54]
+CellTagsIndexPosition[      1582,         51]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"runFireSimulation", "[", "]"}]], "Input",
+ CellChangeTimes->{{3.962362014657263*^9, 3.962362016644867*^9}},
+ CellLabel->"In[88]:=",ExpressionUUID->"bd5bbc69-e9dd-7542-a5bd-f8a4b20ac36a"],
+
+Cell[BoxData["\<\"Simulation canceled by user.\"\>"], "Echo",
+ CellChangeTimes->{
+  3.9623626113192596`*^9},ExpressionUUID->"e94e446e-c8f4-3949-95bd-\
+3362a0006224"],
+
+Cell[BoxData["$Canceled"], "Output",
+ CellChangeTimes->{3.962362032258957*^9, 3.962362069117586*^9, 
+  3.962362182690771*^9, 3.9623625113154335`*^9, 3.962362611359028*^9},
+ CellLabel->"Out[88]=",ExpressionUUID->"6cf76f82-7233-ae42-b1dd-e17ecdf18b81"]
+}, Open  ]]
+},
+WindowSize->{478, 261.5},
+WindowMargins->{{-4.5, Automatic}, {Automatic, 0}},
+FrontEndVersion->"14.2 for Microsoft Windows (64-bit) (March 14, 2025)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"69b9908c-3c0a-7e4a-9fc8-b0c3a5f6bf03"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 210, 3, 28, "Input",ExpressionUUID->"bd5bbc69-e9dd-7542-a5bd-f8a4b20ac36a"],
+Cell[789, 27, 165, 3, 23, "Echo",ExpressionUUID->"e94e446e-c8f4-3949-95bd-3362a0006224"],
+Cell[957, 32, 250, 3, 32, "Output",ExpressionUUID->"6cf76f82-7233-ae42-b1dd-e17ecdf18b81"]
+}, Open  ]]
+}
+]
+*)
+
