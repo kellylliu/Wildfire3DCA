@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[      8371,        209]
-NotebookOptionsPosition[      7276,        183]
-NotebookOutlinePosition[      7699,        200]
-CellTagsIndexPosition[      7656,        197]
+NotebookDataLength[     11176,        273]
+NotebookOptionsPosition[      9782,        244]
+NotebookOutlinePosition[     10214,        261]
+CellTagsIndexPosition[     10171,        258]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -53,18 +53,79 @@ Cell[BoxData[
  CellChangeTimes->{{3.962364578599743*^9, 3.962364579866878*^9}, {
    3.962364646918804*^9, 3.9623646514394817`*^9}, {3.9623647239899063`*^9, 
    3.9623647468806334`*^9}, 3.9623647946247807`*^9},
- CellLabel->"In[86]:=",ExpressionUUID->"0e4af714-2cbd-4a15-ad67-39d56d5badff"],
+ CellLabel->
+  "In[173]:=",ExpressionUUID->"0e4af714-2cbd-4a15-ad67-39d56d5badff"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "GeoImage", "invgr", 
+   "\"\\!\\(\\*TemplateBox[List[\\\"1.`\\\", \
+RowBox[List[SuperscriptBox[\\\"\\\\\\\"km\\\\\\\"\\\", \\\"2\\\"]]], \
+\\\"kilometers squared\\\", \
+SuperscriptBox[\\\"\\\\\\\"Kilometers\\\\\\\"\\\", \\\"2\\\"]], \
+\\\"Quantity\\\", Rule[SyntaxForm, Mod]]\\) is not a valid GeoRange \
+specification.\"", 2, 173, 36, 29962765675621931710, "Local"},
+  "MessageTemplate",
+  BaseStyle->"MSG"]], "Message",
+ CellChangeTimes->{
+  3.962368667654215*^9, 3.962368857463936*^9, {3.9623690771253433`*^9, 
+   3.962369087034458*^9}, 3.962369260691988*^9, 3.962369360118845*^9, {
+   3.96236953766646*^9, 3.9623695513478374`*^9}, 3.962369598844555*^9, 
+   3.9623696783106136`*^9},
+ CellLabel->
+  "During evaluation of \
+In[173]:=",ExpressionUUID->"790b7040-9ba7-d345-9547-d34529e7b1b6"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "GeoGraphics", "invgr", 
+   "\"\\!\\(\\*TemplateBox[List[\\\"1.`\\\", \
+RowBox[List[SuperscriptBox[\\\"\\\\\\\"km\\\\\\\"\\\", \\\"2\\\"]]], \
+\\\"kilometers squared\\\", \
+SuperscriptBox[\\\"\\\\\\\"Kilometers\\\\\\\"\\\", \\\"2\\\"]], \
+\\\"Quantity\\\", Rule[SyntaxForm, Mod]]\\) is not a valid GeoRange \
+specification.\"", 2, 173, 37, 29962765675621931710, "Local"},
+  "MessageTemplate",
+  BaseStyle->"MSG"]], "Message",
+ CellChangeTimes->{
+  3.962368667654215*^9, 3.962368857463936*^9, {3.9623690771253433`*^9, 
+   3.962369087034458*^9}, 3.962369260691988*^9, 3.962369360118845*^9, {
+   3.96236953766646*^9, 3.9623695513478374`*^9}, 3.962369598844555*^9, 
+   3.9623696833581142`*^9},
+ CellLabel->
+  "During evaluation of \
+In[173]:=",ExpressionUUID->"1050876d-0527-794c-8fa6-b32a3f2546c6"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "ArrayResample", "noarr", 
+   "\"\\!\\(\\*RowBox[{\\\"0.`\\\"}]\\) is not a regular array.\"", 2, 173, 
+   38, 29962765675621931710, "Local"},
+  "MessageTemplate",
+  BaseStyle->"MSG"]], "Message",
+ CellChangeTimes->{
+  3.962368667654215*^9, 3.962368857463936*^9, {3.9623690771253433`*^9, 
+   3.962369087034458*^9}, 3.962369260691988*^9, 3.962369360118845*^9, {
+   3.96236953766646*^9, 3.9623695513478374`*^9}, 3.962369598844555*^9, 
+   3.9623696867591515`*^9},
+ CellLabel->
+  "During evaluation of \
+In[173]:=",ExpressionUUID->"36b2c386-1c11-c14e-a9ca-33bd7acf632d"],
 
 Cell[BoxData["\<\"Simulation canceled by user.\"\>"], "Echo",
  CellChangeTimes->{
-  3.962365112364423*^9},ExpressionUUID->"77824695-43a6-424c-b653-\
-33e39b548ab9"],
+  3.962369689402891*^9},ExpressionUUID->"764e2416-8193-cf4e-958f-\
+edc77befdb9f"],
 
 Cell[BoxData["$Canceled"], "Output",
  CellChangeTimes->{{3.962364713756393*^9, 3.962364750688633*^9}, {
-  3.962364810218073*^9, 3.9623648219151087`*^9}, {3.962365101496763*^9, 
-  3.9623651123767567`*^9}},
- CellLabel->"Out[86]=",ExpressionUUID->"15cac93d-fc60-44b9-8dec-c34783bc010c"]
+   3.962364810218073*^9, 3.9623648219151087`*^9}, {3.962365101496763*^9, 
+   3.9623651123767567`*^9}, 3.96236868392367*^9, 3.962368869258909*^9, {
+   3.9623690814345627`*^9, 3.962369095043535*^9}, 3.962369278889065*^9, 
+   3.962369367926695*^9, {3.962369546204876*^9, 3.962369556330002*^9}, 
+   3.9623696105373135`*^9, 3.9623696894419575`*^9},
+ CellLabel->
+  "Out[173]=",ExpressionUUID->"f0457253-b8fd-f745-a633-d7b752a54a7d"]
 }, Open  ]],
 
 Cell[BoxData[
@@ -181,10 +242,10 @@ Cell[BoxData[
  CellLabel->
   "In[172]:=",ExpressionUUID->"4e1cea9c-d36a-3048-bebd-6cbb21d6b1f1"]
 },
-WindowSize->{960, 959},
-WindowMargins->{{Automatic, 25}, {Automatic, 0}},
-Magnification:>1.4 Inherited,
-FrontEndVersion->"14.2 for Mac OS X ARM (64-bit) (March 16, 2025)",
+WindowSize->{478, 561.5},
+WindowMargins->{{-4.5, Automatic}, {Automatic, 0}},
+Magnification:>1.1 Inherited,
+FrontEndVersion->"14.2 for Microsoft Windows (64-bit) (March 14, 2025)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"69b9908c-3c0a-7e4a-9fc8-b0c3a5f6bf03"
 ]
@@ -199,18 +260,21 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[554, 20, 1240, 26, 212, "Input",ExpressionUUID->"51d118fb-c317-4b9e-8ac1-b1a5b69d74f4"],
+Cell[554, 20, 1240, 26, 240, "Input",ExpressionUUID->"51d118fb-c317-4b9e-8ac1-b1a5b69d74f4"],
 Cell[CellGroupData[{
-Cell[1819, 50, 340, 5, 41, "Input",ExpressionUUID->"0e4af714-2cbd-4a15-ad67-39d56d5badff"],
-Cell[2162, 57, 163, 3, 33, "Echo",ExpressionUUID->"77824695-43a6-424c-b653-33e39b548ab9"],
-Cell[2328, 62, 283, 4, 46, "Output",ExpressionUUID->"15cac93d-fc60-44b9-8dec-c34783bc010c"]
+Cell[1819, 50, 344, 6, 31, "Input",ExpressionUUID->"0e4af714-2cbd-4a15-ad67-39d56d5badff"],
+Cell[2166, 58, 823, 18, 30, "Message",ExpressionUUID->"790b7040-9ba7-d345-9547-d34529e7b1b6"],
+Cell[2992, 78, 826, 18, 30, "Message",ExpressionUUID->"1050876d-0527-794c-8fa6-b32a3f2546c6"],
+Cell[3821, 98, 597, 14, 28, "Message",ExpressionUUID->"36b2c386-1c11-c14e-a9ca-33bd7acf632d"],
+Cell[4421, 114, 163, 3, 25, "Echo",ExpressionUUID->"764e2416-8193-cf4e-958f-edc77befdb9f"],
+Cell[4587, 119, 530, 8, 35, "Output",ExpressionUUID->"f0457253-b8fd-f745-a633-d7b752a54a7d"]
 }, Open  ]],
-Cell[2626, 69, 268, 5, 41, "Input",ExpressionUUID->"bd5bbc69-e9dd-7542-a5bd-f8a4b20ac36a"],
+Cell[5132, 130, 268, 5, 31, "Input",ExpressionUUID->"bd5bbc69-e9dd-7542-a5bd-f8a4b20ac36a"],
 Cell[CellGroupData[{
-Cell[2919, 78, 229, 4, 41, "Input",ExpressionUUID->"e4a09ce4-4d36-544b-827f-ddaf02686163"],
-Cell[3151, 84, 3885, 90, 154, "Output",ExpressionUUID->"e0a1bdd0-0478-2042-a1a3-3e73ecefc29b"]
+Cell[5425, 139, 229, 4, 31, "Input",ExpressionUUID->"e4a09ce4-4d36-544b-827f-ddaf02686163"],
+Cell[5657, 145, 3885, 90, 173, "Output",ExpressionUUID->"e0a1bdd0-0478-2042-a1a3-3e73ecefc29b"]
 }, Open  ]],
-Cell[7051, 177, 221, 4, 41, "Input",ExpressionUUID->"4e1cea9c-d36a-3048-bebd-6cbb21d6b1f1"]
+Cell[9557, 238, 221, 4, 31, "Input",ExpressionUUID->"4e1cea9c-d36a-3048-bebd-6cbb21d6b1f1"]
 }
 ]
 *)
