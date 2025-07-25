@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[     11268,        273]
-NotebookOptionsPosition[      9874,        244]
-NotebookOutlinePosition[     10306,        261]
-CellTagsIndexPosition[     10263,        258]
+NotebookDataLength[      9851,        242]
+NotebookOptionsPosition[      8625,        213]
+NotebookOutlinePosition[      9048,        230]
+CellTagsIndexPosition[      9005,        227]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -52,80 +52,24 @@ Cell[BoxData[
  RowBox[{"runFireSimulation", "[", "]"}]], "Input",
  CellChangeTimes->{{3.962364578599743*^9, 3.962364579866878*^9}, {
    3.962364646918804*^9, 3.9623646514394817`*^9}, {3.9623647239899063`*^9, 
-   3.9623647468806334`*^9}, 3.9623647946247807`*^9},
+   3.9623647468806334`*^9}, 3.9623647946247807`*^9, {3.962382637799807*^9, 
+   3.962382639027687*^9}, {3.962382701738611*^9, 3.9623827115063667`*^9}, 
+   3.962389569074047*^9},
  CellLabel->
-  "In[212]:=",ExpressionUUID->"0e4af714-2cbd-4a15-ad67-39d56d5badff"],
+  "In[124]:=",ExpressionUUID->"0e4af714-2cbd-4a15-ad67-39d56d5badff"],
 
 Cell[BoxData[
- TemplateBox[{
-  "GeoImage", "invgr", 
-   "\"\\!\\(\\*TemplateBox[List[\\\"1.`\\\", \
-RowBox[List[SuperscriptBox[\\\"\\\\\\\"km\\\\\\\"\\\", \\\"2\\\"]]], \
-\\\"kilometers squared\\\", \
-SuperscriptBox[\\\"\\\\\\\"Kilometers\\\\\\\"\\\", \\\"2\\\"]], \
-\\\"Quantity\\\", Rule[SyntaxForm, Mod]]\\) is not a valid GeoRange \
-specification.\"", 2, 212, 41, 29962765675621931710, "Local"},
-  "MessageTemplate",
-  BaseStyle->"MSG"]], "Message",
- CellChangeTimes->{
-  3.962368667654215*^9, 3.962368857463936*^9, {3.9623690771253433`*^9, 
-   3.962369087034458*^9}, 3.962369260691988*^9, 3.962369360118845*^9, {
-   3.96236953766646*^9, 3.9623695513478374`*^9}, 3.962369598844555*^9, 
-   3.9623696783106136`*^9, 3.962370035803547*^9},
- CellLabel->
-  "During evaluation of \
-In[212]:=",ExpressionUUID->"bc11f36d-c2a0-f74e-91c6-ff25763418e0"],
-
-Cell[BoxData[
- TemplateBox[{
-  "GeoGraphics", "invgr", 
-   "\"\\!\\(\\*TemplateBox[List[\\\"1.`\\\", \
-RowBox[List[SuperscriptBox[\\\"\\\\\\\"km\\\\\\\"\\\", \\\"2\\\"]]], \
-\\\"kilometers squared\\\", \
-SuperscriptBox[\\\"\\\\\\\"Kilometers\\\\\\\"\\\", \\\"2\\\"]], \
-\\\"Quantity\\\", Rule[SyntaxForm, Mod]]\\) is not a valid GeoRange \
-specification.\"", 2, 212, 42, 29962765675621931710, "Local"},
-  "MessageTemplate",
-  BaseStyle->"MSG"]], "Message",
- CellChangeTimes->{
-  3.962368667654215*^9, 3.962368857463936*^9, {3.9623690771253433`*^9, 
-   3.962369087034458*^9}, 3.962369260691988*^9, 3.962369360118845*^9, {
-   3.96236953766646*^9, 3.9623695513478374`*^9}, 3.962369598844555*^9, 
-   3.9623696783106136`*^9, 3.962370038192129*^9},
- CellLabel->
-  "During evaluation of \
-In[212]:=",ExpressionUUID->"3dfd5514-2eb6-5a40-9c20-dc3161bda954"],
-
-Cell[BoxData[
- TemplateBox[{
-  "ArrayResample", "noarr", 
-   "\"\\!\\(\\*RowBox[{\\\"0.`\\\"}]\\) is not a regular array.\"", 2, 212, 
-   43, 29962765675621931710, "Local"},
-  "MessageTemplate",
-  BaseStyle->"MSG"]], "Message",
- CellChangeTimes->{
-  3.962368667654215*^9, 3.962368857463936*^9, {3.9623690771253433`*^9, 
-   3.962369087034458*^9}, 3.962369260691988*^9, 3.962369360118845*^9, {
-   3.96236953766646*^9, 3.9623695513478374`*^9}, 3.962369598844555*^9, 
-   3.9623696783106136`*^9, 3.9623700405104675`*^9},
- CellLabel->
-  "During evaluation of \
-In[212]:=",ExpressionUUID->"48bd6d54-15ea-c44e-a8f6-2c3f664e689c"],
-
-Cell[BoxData["\<\"Simulation canceled by user.\"\>"], "Echo",
- CellChangeTimes->{
-  3.962370043332163*^9},ExpressionUUID->"89e01bb1-1978-2642-9def-\
-ee245d1d8dca"],
-
-Cell[BoxData["$Canceled"], "Output",
+ RowBox[{"runFireSimulation", "[", "]"}]], "Output",
  CellChangeTimes->{{3.962364713756393*^9, 3.962364750688633*^9}, {
    3.962364810218073*^9, 3.9623648219151087`*^9}, {3.962365101496763*^9, 
    3.9623651123767567`*^9}, 3.96236868392367*^9, 3.962368869258909*^9, {
    3.9623690814345627`*^9, 3.962369095043535*^9}, 3.962369278889065*^9, 
    3.962369367926695*^9, {3.962369546204876*^9, 3.962369556330002*^9}, 
-   3.9623696105373135`*^9, 3.9623696894419575`*^9, 3.9623700433591595`*^9},
+   3.9623696105373135`*^9, 3.9623696894419575`*^9, 3.9623700433591595`*^9, 
+   3.9623826675203657`*^9, 3.962382716334486*^9, {3.962389546434286*^9, 
+   3.962389569742572*^9}, 3.962390446236566*^9},
  CellLabel->
-  "Out[212]=",ExpressionUUID->"fa075fd6-7d18-a048-965d-f6f826d4a05a"]
+  "Out[124]=",ExpressionUUID->"0451cf0f-de9c-4dcf-8ad6-2757e9923840"]
 }, Open  ]],
 
 Cell[BoxData[
@@ -240,12 +184,37 @@ Cell[BoxData[
  RowBox[{"%", "[", "\"\<Animation\>\"", "]"}]], "Input",
  CellChangeTimes->{{3.962363812158539*^9, 3.9623638182696457`*^9}},
  CellLabel->
-  "In[172]:=",ExpressionUUID->"4e1cea9c-d36a-3048-bebd-6cbb21d6b1f1"]
+  "In[172]:=",ExpressionUUID->"4e1cea9c-d36a-3048-bebd-6cbb21d6b1f1"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"run3DFireSimulation", "[", 
+  RowBox[{"80", ",", "2", ",", "20", ",", "0.8", ",", "0.3", ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "0"}], "}"}], ",", "0.2", ",", "1.5", ",", "0.7", ",", 
+   RowBox[{"{", 
+    RowBox[{"34.240516", ",", 
+     RowBox[{"-", "117.992"}]}], "}"}], ",", "30", ",", "0.075"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.962383061961816*^9, 3.962383118308779*^9}, {
+  3.962390806240597*^9, 3.962390883025282*^9}},
+ CellLabel->
+  "In[101]:=",ExpressionUUID->"e9f3f00e-21a8-4558-869e-b84b8643fff2"],
+
+Cell[BoxData["$Canceled"], "Output",
+ CellChangeTimes->{{3.962383109611116*^9, 3.96238314384687*^9}, 
+   3.962389290266821*^9, 3.962389610802174*^9, 3.962389947406849*^9, 
+   3.9623900210562553`*^9, {3.962390560788703*^9, 3.962390590524164*^9}, {
+   3.962390803793086*^9, 3.962390879662464*^9}},
+ CellLabel->
+  "Out[100]=",ExpressionUUID->"b3049ed5-94ed-47f4-895e-219d0d205cc4"]
+}, Open  ]]
 },
-WindowSize->{478, 561.5},
-WindowMargins->{{-4.5, Automatic}, {Automatic, 0}},
+WindowSize->{739, 835},
+WindowMargins->{{-5, Automatic}, {Automatic, 0}},
 Magnification:>1.1 Inherited,
-FrontEndVersion->"14.2 for Microsoft Windows (64-bit) (March 14, 2025)",
+FrontEndVersion->"14.2 for Mac OS X ARM (64-bit) (March 16, 2025)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"69b9908c-3c0a-7e4a-9fc8-b0c3a5f6bf03"
 ]
@@ -260,21 +229,21 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[554, 20, 1240, 26, 240, "Input",ExpressionUUID->"51d118fb-c317-4b9e-8ac1-b1a5b69d74f4"],
+Cell[554, 20, 1240, 26, 167, "Input",ExpressionUUID->"51d118fb-c317-4b9e-8ac1-b1a5b69d74f4"],
 Cell[CellGroupData[{
-Cell[1819, 50, 344, 6, 31, "Input",ExpressionUUID->"0e4af714-2cbd-4a15-ad67-39d56d5badff"],
-Cell[2166, 58, 845, 18, 30, "Message",ExpressionUUID->"bc11f36d-c2a0-f74e-91c6-ff25763418e0"],
-Cell[3014, 78, 848, 18, 30, "Message",ExpressionUUID->"3dfd5514-2eb6-5a40-9c20-dc3161bda954"],
-Cell[3865, 98, 621, 14, 28, "Message",ExpressionUUID->"48bd6d54-15ea-c44e-a8f6-2c3f664e689c"],
-Cell[4489, 114, 163, 3, 25, "Echo",ExpressionUUID->"89e01bb1-1978-2642-9def-ee245d1d8dca"],
-Cell[4655, 119, 554, 8, 35, "Output",ExpressionUUID->"fa075fd6-7d18-a048-965d-f6f826d4a05a"]
+Cell[1819, 50, 468, 8, 32, "Input",ExpressionUUID->"0e4af714-2cbd-4a15-ad67-39d56d5badff"],
+Cell[2290, 60, 706, 11, 36, "Output",ExpressionUUID->"0451cf0f-de9c-4dcf-8ad6-2757e9923840"]
 }, Open  ]],
-Cell[5224, 130, 268, 5, 31, "Input",ExpressionUUID->"bd5bbc69-e9dd-7542-a5bd-f8a4b20ac36a"],
+Cell[3011, 74, 268, 5, 32, "Input",ExpressionUUID->"bd5bbc69-e9dd-7542-a5bd-f8a4b20ac36a"],
 Cell[CellGroupData[{
-Cell[5517, 139, 229, 4, 31, "Input",ExpressionUUID->"e4a09ce4-4d36-544b-827f-ddaf02686163"],
-Cell[5749, 145, 3885, 90, 173, "Output",ExpressionUUID->"e0a1bdd0-0478-2042-a1a3-3e73ecefc29b"]
+Cell[3304, 83, 229, 4, 32, "Input",ExpressionUUID->"e4a09ce4-4d36-544b-827f-ddaf02686163"],
+Cell[3536, 89, 3885, 90, 121, "Output",ExpressionUUID->"e0a1bdd0-0478-2042-a1a3-3e73ecefc29b"]
 }, Open  ]],
-Cell[9649, 238, 221, 4, 31, "Input",ExpressionUUID->"4e1cea9c-d36a-3048-bebd-6cbb21d6b1f1"]
+Cell[7436, 182, 221, 4, 32, "Input",ExpressionUUID->"4e1cea9c-d36a-3048-bebd-6cbb21d6b1f1"],
+Cell[CellGroupData[{
+Cell[7682, 190, 546, 12, 54, "Input",ExpressionUUID->"e9f3f00e-21a8-4558-869e-b84b8643fff2"],
+Cell[8231, 204, 378, 6, 36, "Output",ExpressionUUID->"b3049ed5-94ed-47f4-895e-219d0d205cc4"]
+}, Open  ]]
 }
 ]
 *)
