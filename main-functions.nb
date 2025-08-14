@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[    148885,       3401]
-NotebookOptionsPosition[    145138,       3350]
-NotebookOutlinePosition[    145561,       3367]
-CellTagsIndexPosition[    145518,       3364]
+NotebookDataLength[    158385,       3648]
+NotebookOptionsPosition[    154535,       3596]
+NotebookOutlinePosition[    154957,       3613]
+CellTagsIndexPosition[    154914,       3610]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -918,271 +918,421 @@ Cell[BoxData[
    3.9611619253812065`*^9}},
  CellLabel->"In[98]:=",ExpressionUUID->"a4fce2ce-228f-1c43-9b68-d5e7ac4ba401"],
 
-Cell[BoxData[
+Cell[BoxData[{
  RowBox[{
-  RowBox[{"fireSpreadRule", "[", 
+  RowBox[{
    RowBox[{
-   "terrainGrid_", ",", "fireGrid_", ",", "elevationGrid_", ",", "gridSize_", 
-    ",", "ignitionProbability_", ",", "windSpeed_", ",", "windDirection_", ",",
-     "moisture_", ",", "uphillMultiplier_", ",", "downhillMultiplier_"}], 
-   "]"}], ":=", 
-  RowBox[{"Module", "[", 
-   RowBox[{
-    RowBox[{"{", 
+    RowBox[{"buildEmberKernel", "[", 
+     RowBox[{"windDir_", ",", 
+      RowBox[{"R_", ":", "8"}], ",", 
+      RowBox[{"p_", ":", "2"}]}], "]"}], ":=", 
+    RowBox[{"Module", "[", 
      RowBox[{
-      RowBox[{"newGrid", "=", "fireGrid"}], ",", "currentTerrain", ",", 
-      "currentFire", ",", "currentElev", ",", "patchProps", ",", "neighbors", 
-      ",", 
-      RowBox[{"totalHeat", "=", "0"}], ",", "burnTimeLeft", ",", "nTerrain", ",",
-       "nFire", ",", "nElev", ",", "distance", ",", "nProps", ",", 
-      "radiationStr", ",", "windQ", ",", "slopeFactor", ",", "emberProd"}], 
-     "}"}], ",", 
-    RowBox[{
-     RowBox[{"Table", "[", 
-      RowBox[{
+      RowBox[{"{", 
        RowBox[{
-        RowBox[{"currentTerrain", "=", 
-         RowBox[{"terrainGrid", "[", 
-          RowBox[{"[", 
-           RowBox[{"i", ",", "j"}], "]"}], "]"}]}], ";", 
-        "\[IndentingNewLine]", 
-        RowBox[{"currentFire", "=", 
-         RowBox[{"fireGrid", "[", 
-          RowBox[{"[", 
-           RowBox[{"i", ",", "j"}], "]"}], "]"}]}], ";", 
-        "\[IndentingNewLine]", 
-        RowBox[{"currentElev", "=", 
-         RowBox[{"elevationGrid", "[", 
-          RowBox[{"[", 
-           RowBox[{"i", ",", "j"}], "]"}], "]"}]}], ";", 
-        "\[IndentingNewLine]", 
-        RowBox[{"patchProps", "=", 
-         RowBox[{"getPatchProperties", "[", "currentTerrain", "]"}]}], ";", 
-        "\[IndentingNewLine]", 
-        RowBox[{"Which", "[", 
-         RowBox[{
+        RowBox[{"wd", "=", 
+         RowBox[{"If", "[", 
           RowBox[{
-           RowBox[{"currentTerrain", "==", "6"}], "||", 
-           RowBox[{"currentTerrain", "==", "3"}]}], ",", "Null", ",", 
-          RowBox[{"0", "<", "currentFire", "<=", "10"}], ",", 
-          RowBox[{
-           RowBox[{"burnTimeLeft", "=", 
-            RowBox[{"currentFire", "-", "1"}]}], ";", "\[IndentingNewLine]", 
            RowBox[{
-            RowBox[{"newGrid", "[", 
-             RowBox[{"[", 
-              RowBox[{"i", ",", "j"}], "]"}], "]"}], "=", 
-            RowBox[{"If", "[", 
+            RowBox[{"Norm", "[", "windDir", "]"}], ">", "0"}], ",", 
+           RowBox[{"Normalize", "[", "windDir", "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"1.", ",", "0."}], "}"}]}], "]"}]}], ",", "ker"}], "}"}], 
+      ",", 
+      RowBox[{
+       RowBox[{"ker", "=", 
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{"Module", "[", 
+           RowBox[{
+            RowBox[{"{", 
              RowBox[{
-              RowBox[{"burnTimeLeft", "<=", "0"}], ",", "11", ",", 
-              "burnTimeLeft"}], "]"}]}]}], ",", 
-          RowBox[{"currentFire", "==", "11"}], ",", "Null", ",", 
-          RowBox[{"currentFire", "==", "0"}], ",", 
-          RowBox[{
-           RowBox[{"neighbors", "=", 
-            RowBox[{"Select", "[", 
-             RowBox[{
-              RowBox[{"{", 
-               RowBox[{
-                RowBox[{"{", 
-                 RowBox[{
-                  RowBox[{"i", "-", "1"}], ",", 
-                  RowBox[{"j", "-", "1"}]}], "}"}], ",", 
-                RowBox[{"{", 
-                 RowBox[{
-                  RowBox[{"i", "-", "1"}], ",", "j"}], "}"}], ",", 
-                RowBox[{"{", 
-                 RowBox[{
-                  RowBox[{"i", "-", "1"}], ",", 
-                  RowBox[{"j", "+", "1"}]}], "}"}], ",", 
-                RowBox[{"{", 
-                 RowBox[{"i", ",", 
-                  RowBox[{"j", "-", "1"}]}], "}"}], ",", 
-                RowBox[{"{", 
-                 RowBox[{"i", ",", 
-                  RowBox[{"j", "+", "1"}]}], "}"}], ",", 
-                RowBox[{"{", 
-                 RowBox[{
-                  RowBox[{"i", "+", "1"}], ",", 
-                  RowBox[{"j", "-", "1"}]}], "}"}], ",", 
-                RowBox[{"{", 
-                 RowBox[{
-                  RowBox[{"i", "+", "1"}], ",", "j"}], "}"}], ",", 
-                RowBox[{"{", 
-                 RowBox[{
-                  RowBox[{"i", "+", "1"}], ",", 
-                  RowBox[{"j", "+", "1"}]}], "}"}]}], "}"}], ",", 
-              RowBox[{
-               RowBox[{
-                RowBox[{"1", "<=", 
-                 RowBox[{"#", "[", 
-                  RowBox[{"[", "1", "]"}], "]"}], "<=", "gridSize"}], "&&", 
-                RowBox[{"1", "<=", 
-                 RowBox[{"#", "[", 
-                  RowBox[{"[", "2", "]"}], "]"}], "<=", "gridSize"}]}], 
-               "&"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
-           RowBox[{"totalHeat", "=", "0"}], ";", "\[IndentingNewLine]", 
-           RowBox[{"Table", "[", 
+              RowBox[{"d", "=", 
+               RowBox[{"{", 
+                RowBox[{"dx", ",", "dy"}], "}"}]}], ",", "dist", ",", 
+              "align"}], "}"}], ",", 
             RowBox[{
-             RowBox[{
-              RowBox[{"nTerrain", "=", 
-               RowBox[{"terrainGrid", "[", 
-                RowBox[{"[", 
-                 RowBox[{
-                  RowBox[{"neighbor", "[", 
-                   RowBox[{"[", "1", "]"}], "]"}], ",", 
-                  RowBox[{"neighbor", "[", 
-                   RowBox[{"[", "2", "]"}], "]"}]}], "]"}], "]"}]}], ";", 
-              "\[IndentingNewLine]", 
-              RowBox[{"nFire", "=", 
-               RowBox[{"fireGrid", "[", 
-                RowBox[{"[", 
-                 RowBox[{
-                  RowBox[{"neighbor", "[", 
-                   RowBox[{"[", "1", "]"}], "]"}], ",", 
-                  RowBox[{"neighbor", "[", 
-                   RowBox[{"[", "2", "]"}], "]"}]}], "]"}], "]"}]}], ";", 
-              "\[IndentingNewLine]", 
-              RowBox[{"nElev", "=", 
-               RowBox[{"elevationGrid", "[", 
-                RowBox[{"[", 
-                 RowBox[{
-                  RowBox[{"neighbor", "[", 
-                   RowBox[{"[", "1", "]"}], "]"}], ",", 
-                  RowBox[{"neighbor", "[", 
-                   RowBox[{"[", "2", "]"}], "]"}]}], "]"}], "]"}]}], ";", 
-              "\[IndentingNewLine]", 
+             RowBox[{"dist", "=", 
+              RowBox[{"Norm", "[", "d", "]"}]}], ";", "\[IndentingNewLine]", 
+             RowBox[{"align", "=", 
               RowBox[{"If", "[", 
                RowBox[{
-                RowBox[{"0", "<", "nFire", "<=", "10"}], ",", 
+                RowBox[{"dist", "==", "0."}], ",", "0.", ",", 
+                RowBox[{"Max", "[", 
+                 RowBox[{"0.", ",", 
+                  RowBox[{"wd", ".", 
+                   RowBox[{"(", 
+                    RowBox[{"d", "/", "dist"}], ")"}]}]}], "]"}]}], "]"}]}], ";", 
+             RowBox[{"(*", 
+              RowBox[{"downwind", " ", "only"}], "*)"}], 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{"dist", "==", "0."}], ",", "0.", ",", 
+               RowBox[{"align", "/", 
+                RowBox[{"(", 
+                 RowBox[{"1", "+", 
+                  RowBox[{"dist", "^", "p"}]}], ")"}]}]}], "]"}]}]}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"dy", ",", 
+            RowBox[{"-", "R"}], ",", "R"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"dx", ",", 
+            RowBox[{"-", "R"}], ",", "R"}], "}"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"ker", "[", 
+         RowBox[{"[", 
+          RowBox[{
+           RowBox[{"R", "+", "1"}], ",", 
+           RowBox[{"R", "+", "1"}]}], "]"}], "]"}], "=", "0."}], ";", 
+       RowBox[{"(*", 
+        RowBox[{
+         RowBox[{"no", " ", "self"}], "-", "contribution"}], "*)"}], 
+       "ker"}]}], "]"}]}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"emberHeatField", "[", 
+    RowBox[{
+    "terrainGrid_", ",", "fireGrid_", ",", "windDir_", ",", "windSpeed_", ",", 
+     RowBox[{"R_", ":", "8"}]}], "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"E", ",", "burningMask", ",", "ker"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"E", "=", 
+       RowBox[{"Map", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"getPatchProperties", "[", "#", "]"}], 
+           "[", "\"\<emberProduction\>\"", "]"}], "&"}], ",", "terrainGrid", ",", 
+         RowBox[{"{", "2", "}"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"burningMask", "=", 
+       RowBox[{"Unitize", "@", 
+        RowBox[{"Clip", "[", 
+         RowBox[{"fireGrid", ",", 
+          RowBox[{"{", 
+           RowBox[{"1", ",", "10"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"0", ",", "1"}], "}"}]}], "]"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"ker", "=", 
+       RowBox[{"buildEmberKernel", "[", 
+        RowBox[{"windDir", ",", "R", ",", "2"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"windSpeed", "*", 
+       RowBox[{"ListCorrelate", "[", 
+        RowBox[{"ker", ",", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"7", "-", "E"}], ")"}], "*", "burningMask"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"2", ",", "2"}], "}"}], ",", "0"}], "]"}]}]}]}], "]"}]}], 
+  ";"}], "\n"}], "Input",
+ CellChangeTimes->{{3.9641529860547113`*^9, 3.964152986056855*^9}},
+ CellLabel->"In[99]:=",ExpressionUUID->"dfc5ae06-a454-4aa6-a3af-7868802cee2d"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"fireSpreadRuleWithEmbers", "[", 
+     RowBox[{
+     "terrainGrid_", ",", "fireGrid_", ",", "elevationGrid_", ",", 
+      "gridSize_", ",", "ignitionProbability_", ",", "windSpeed_", ",", 
+      "windDirection_", ",", "moisture_", ",", "uphillMultiplier_", ",", 
+      "downhillMultiplier_", ",", "emberField_"}], "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"newGrid", "=", "fireGrid"}], ",", "cappedNormalize", ",", 
+        "neighborsRadius", ",", "windDir"}], "}"}], ",", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"cappedNormalize", "[", "v_List", "]"}], ":=", 
+        RowBox[{"With", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"nv", "=", 
+            RowBox[{"Norm", "[", "v", "]"}]}], "}"}], ",", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"nv", "==", "0."}], ",", "v", ",", 
+            RowBox[{"v", "/", "nv"}]}], "]"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"neighborsRadius", "[", 
+         RowBox[{"ii_", ",", "jj_", ",", "nmax_", ",", 
+          RowBox[{"r_", ":", "2"}]}], "]"}], ":=", 
+        RowBox[{"Module", "[", 
+         RowBox[{
+          RowBox[{"{", "cand", "}"}], ",", 
+          RowBox[{
+           RowBox[{"cand", "=", 
+            RowBox[{"Flatten", "[", 
+             RowBox[{
+              RowBox[{"Table", "[", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{"i", ",", "j"}], "}"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{"i", ",", 
+                  RowBox[{"Max", "[", 
+                   RowBox[{"1", ",", 
+                    RowBox[{"ii", "-", "r"}]}], "]"}], ",", 
+                  RowBox[{"Min", "[", 
+                   RowBox[{"nmax", ",", 
+                    RowBox[{"ii", "+", "r"}]}], "]"}]}], "}"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{"j", ",", 
+                  RowBox[{"Max", "[", 
+                   RowBox[{"1", ",", 
+                    RowBox[{"jj", "-", "r"}]}], "]"}], ",", 
+                  RowBox[{"Min", "[", 
+                   RowBox[{"nmax", ",", 
+                    RowBox[{"jj", "+", "r"}]}], "]"}]}], "}"}]}], "]"}], ",", 
+              "1"}], "]"}]}], ";", "\[IndentingNewLine]", 
+           RowBox[{"Select", "[", 
+            RowBox[{"cand", ",", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"(", 
                 RowBox[{
-                 RowBox[{"distance", "=", 
-                  RowBox[{"Norm", "[", 
-                   RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{"neighbor", "[", 
-                    RowBox[{"[", "1", "]"}], "]"}], "-", "i"}], ",", 
-                    RowBox[{
-                    RowBox[{"neighbor", "[", 
-                    RowBox[{"[", "2", "]"}], "]"}], "-", "j"}]}], "}"}], 
-                   "]"}]}], ";", "\[IndentingNewLine]", 
-                 RowBox[{"nProps", "=", 
-                  RowBox[{"getPatchProperties", "[", "nTerrain", "]"}]}], ";",
-                  "\[IndentingNewLine]", 
-                 RowBox[{"radiationStr", "=", 
-                  RowBox[{"7", "-", 
-                   RowBox[{
-                   "nProps", "[", "\"\<radiationStrength\>\"", "]"}]}]}], ";",
-                  "\[IndentingNewLine]", 
-                 RowBox[{"slopeFactor", "=", 
-                  RowBox[{"calculateSlopeFactor", "[", 
-                   RowBox[{
-                   "currentElev", ",", "nElev", ",", "uphillMultiplier", ",", 
-                    "downhillMultiplier"}], "]"}]}], ";", 
-                 "\[IndentingNewLine]", 
-                 RowBox[{"totalHeat", "+=", 
-                  RowBox[{
-                   RowBox[{"(", 
-                    RowBox[{"radiationStr", "*", "slopeFactor"}], ")"}], "/", 
-                   
-                   RowBox[{"(", 
-                    RowBox[{"1", "+", "distance"}], ")"}]}]}], ";", 
-                 "\[IndentingNewLine]", 
-                 RowBox[{"windQ", "=", 
+                 RowBox[{
+                  RowBox[{"#", "[", 
+                   RowBox[{"[", "1", "]"}], "]"}], "!=", "ii"}], "||", 
+                 RowBox[{
+                  RowBox[{"#", "[", 
+                   RowBox[{"[", "2", "]"}], "]"}], "!=", "jj"}]}], ")"}], "&&", 
+               RowBox[{
+                RowBox[{"Norm", "[", 
+                 RowBox[{"{", 
                   RowBox[{
                    RowBox[{
-                    RowBox[{
-                    RowBox[{"windDirection", "[", 
-                    RowBox[{"[", "1", "]"}], "]"}], "*", 
-                    RowBox[{"(", 
-                    RowBox[{
-                    RowBox[{"neighbor", "[", 
-                    RowBox[{"[", "2", "]"}], "]"}], "-", "j"}], ")"}]}], "+", 
-                    
-                    RowBox[{
-                    RowBox[{"windDirection", "[", 
-                    RowBox[{"[", "2", "]"}], "]"}], "*", 
-                    RowBox[{"(", 
-                    RowBox[{
-                    RowBox[{"neighbor", "[", 
-                    RowBox[{"[", "1", "]"}], "]"}], "-", "i"}], ")"}]}]}], ">",
-                    "0.3"}]}], ";", "\[IndentingNewLine]", 
+                    RowBox[{"#", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], "-", "ii"}], ",", 
+                   RowBox[{
+                    RowBox[{"#", "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], "-", "jj"}]}], "}"}], 
+                 "]"}], "<=", 
+                RowBox[{"r", "+", 
+                 RowBox[{"10", "^", 
+                  RowBox[{"-", "9"}]}]}]}]}], "&"}]}], "]"}]}]}], "]"}]}], ";",
+        "\[IndentingNewLine]", 
+       RowBox[{"windDir", "=", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Norm", "[", "windDirection", "]"}], ">", "0"}], ",", 
+          RowBox[{"Normalize", "[", "windDirection", "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"0.", ",", "0."}], "}"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"Module", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+            "currentTerrain", ",", "currentFire", ",", "currentElev", ",", 
+             "patchProps", ",", "neighbors", ",", "localHeat", ",", 
+             "totalHeat"}], "}"}], ",", 
+           RowBox[{
+            RowBox[{"currentTerrain", "=", 
+             RowBox[{"terrainGrid", "[", 
+              RowBox[{"[", 
+               RowBox[{"i", ",", "j"}], "]"}], "]"}]}], ";", 
+            "\[IndentingNewLine]", 
+            RowBox[{"currentFire", "=", 
+             RowBox[{"fireGrid", "[", 
+              RowBox[{"[", 
+               RowBox[{"i", ",", "j"}], "]"}], "]"}]}], ";", 
+            "\[IndentingNewLine]", 
+            RowBox[{"currentElev", "=", 
+             RowBox[{"elevationGrid", "[", 
+              RowBox[{"[", 
+               RowBox[{"i", ",", "j"}], "]"}], "]"}]}], ";", 
+            "\[IndentingNewLine]", 
+            RowBox[{"patchProps", "=", 
+             RowBox[{"getPatchProperties", "[", "currentTerrain", "]"}]}], ";",
+             "\[IndentingNewLine]", 
+            RowBox[{"Which", "[", 
+             RowBox[{"(*", 
+              RowBox[{"non", "-", "burnables"}], "*)"}], 
+             RowBox[{
+              RowBox[{
+               RowBox[{"currentTerrain", "==", "6"}], "||", 
+               RowBox[{"currentTerrain", "==", "3"}]}], ",", "Null", ",", 
+              RowBox[{"(*", 
+               RowBox[{"burning", " ", "countdown"}], "*)"}], 
+              RowBox[{"0", "<", "currentFire", "<=", "10"}], ",", 
+              RowBox[{
+               RowBox[{"newGrid", "[", 
+                RowBox[{"[", 
+                 RowBox[{"i", ",", "j"}], "]"}], "]"}], "=", 
+               RowBox[{"With", "[", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"t", "=", 
+                   RowBox[{"currentFire", "-", "1"}]}], "}"}], ",", 
                  RowBox[{"If", "[", 
-                  RowBox[{"windQ", ",", 
-                   RowBox[{
-                    RowBox[{"emberProd", "=", 
+                  RowBox[{
+                   RowBox[{"t", "<=", "0"}], ",", "11", ",", "t"}], "]"}]}], 
+                "]"}]}], ",", 
+              RowBox[{"(*", 
+               RowBox[{"already", " ", "charred"}], "*)"}], 
+              RowBox[{"currentFire", "==", "11"}], ",", "Null", ",", 
+              RowBox[{"(*", 
+               RowBox[{"unburned", ":", 
+                RowBox[{
+                 RowBox[{"local", " ", "radiation"}], "+", 
+                 RowBox[{"global", " ", "ember", " ", "field"}]}]}], "*)"}], 
+              RowBox[{"currentFire", "==", "0"}], ",", 
+              RowBox[{
+               RowBox[{"neighbors", "=", 
+                RowBox[{"neighborsRadius", "[", 
+                 RowBox[{"i", ",", "j", ",", "gridSize", ",", "2"}], "]"}]}], 
+               ";", "\[IndentingNewLine]", 
+               RowBox[{"(*", 
+                RowBox[{"local", " ", "radiation", " ", "part", " ", 
+                 RowBox[{"(", 
+                  RowBox[{
+                   RowBox[{"no", " ", "side"}], "-", "effects"}], ")"}]}], 
+                "*)"}], 
+               RowBox[{"localHeat", "=", 
+                RowBox[{"Total", "@", 
+                 RowBox[{"Map", "[", 
+                  RowBox[{
+                   RowBox[{"Function", "[", 
+                    RowBox[{
+                    RowBox[{"{", "p", "}"}], ",", 
+                    RowBox[{"Module", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    "ni", ",", "nj", ",", "nTerrain", ",", "nFire", ",", 
+                    "nElev", ",", "nProps", ",", "dist", ",", "slopeFactor", ",",
+                     "radiationStr"}], "}"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"ni", ",", "nj"}], "}"}], "=", "p"}], ";", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"nTerrain", "=", 
+                    RowBox[{"terrainGrid", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"ni", ",", "nj"}], "]"}], "]"}]}], ";", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"nFire", "=", 
+                    RowBox[{"fireGrid", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"ni", ",", "nj"}], "]"}], "]"}]}], ";", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"0", "<", "nFire", "<=", "10"}], ",", 
+                    RowBox[{
+                    RowBox[{"nElev", "=", 
+                    RowBox[{"elevationGrid", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"ni", ",", "nj"}], "]"}], "]"}]}], ";", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"nProps", "=", 
+                    RowBox[{"getPatchProperties", "[", "nTerrain", "]"}]}], ";",
+                     "\[IndentingNewLine]", 
+                    RowBox[{"dist", "=", 
+                    RowBox[{"Norm", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"nj", "-", "j"}], ",", 
+                    RowBox[{"ni", "-", "i"}]}], "}"}], "]"}]}], ";", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"slopeFactor", "=", 
+                    RowBox[{"calculateSlopeFactor", "[", 
+                    RowBox[{
+                    "currentElev", ",", "nElev", ",", "uphillMultiplier", ",",
+                     "downhillMultiplier"}], "]"}]}], ";", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"radiationStr", "=", 
                     RowBox[{"7", "-", 
                     RowBox[{
-                    "nProps", "[", "\"\<emberProduction\>\"", "]"}]}]}], ";", 
-                    "\[IndentingNewLine]", 
-                    RowBox[{"totalHeat", "+=", 
+                    "nProps", "[", "\"\<radiationStrength\>\"", "]"}]}]}], ";",
+                     "\[IndentingNewLine]", 
                     RowBox[{
-                    "emberProd", "*", "windSpeed", "*", "slopeFactor"}]}], 
-                    ";"}]}], "]"}], ";"}]}], "]"}], ";"}], ",", 
-             RowBox[{"{", 
-              RowBox[{"neighbor", ",", "neighbors"}], "}"}]}], "]"}], ";", 
-           "\[IndentingNewLine]", 
-           RowBox[{"If", "[", 
-            RowBox[{
-             RowBox[{"totalHeat", ">", "0"}], ",", 
-             RowBox[{"Module", "[", 
-              RowBox[{
-               RowBox[{"{", 
+                    RowBox[{"(", 
+                    RowBox[{"radiationStr", "*", "slopeFactor"}], ")"}], "/", 
+                    
+                    RowBox[{"(", 
+                    RowBox[{"1", "+", "dist"}], ")"}]}]}], ",", "0"}], 
+                    "]"}]}]}], "]"}]}], "]"}], ",", "neighbors"}], "]"}]}]}], 
+               ";", "\[IndentingNewLine]", 
+               RowBox[{"(*", 
                 RowBox[{
-                "flammability", ",", "heatResistance", ",", "moistureEffect", 
-                 ",", "ignitionChance"}], "}"}], ",", 
-               RowBox[{
-                RowBox[{"flammability", "=", 
-                 RowBox[{"7", "-", 
+                 RowBox[{"add", " ", "long"}], "-", 
+                 RowBox[{
+                 "range", " ", "ember", " ", "contribution", " ", 
+                  "precomputed", " ", "by", " ", "convolution"}]}], "*)"}], 
+               RowBox[{"totalHeat", "=", 
+                RowBox[{"localHeat", "+", 
+                 RowBox[{"emberField", "[", 
+                  RowBox[{"[", 
+                   RowBox[{"i", ",", "j"}], "]"}], "]"}]}]}], ";", 
+               "\[IndentingNewLine]", 
+               RowBox[{"If", "[", 
+                RowBox[{
+                 RowBox[{"totalHeat", ">", "0"}], ",", 
+                 RowBox[{"Module", "[", 
                   RowBox[{
-                  "patchProps", "[", "\"\<flammability\>\"", "]"}]}]}], ";", 
-                "\[IndentingNewLine]", 
-                RowBox[{"heatResistance", "=", 
-                 RowBox[{"patchProps", "[", "\"\<heatResistance\>\"", "]"}]}],
-                 ";", "\[IndentingNewLine]", 
-                RowBox[{"moistureEffect", "=", 
-                 RowBox[{"1", "-", "moisture"}]}], ";", "\[IndentingNewLine]", 
-                RowBox[{"ignitionChance", "=", 
-                 RowBox[{"Min", "[", 
-                  RowBox[{
+                   RowBox[{"{", 
+                    RowBox[{
+                    "flammability", ",", "heatResistance", ",", 
+                    "moistureEffect", ",", "ignitionChance"}], "}"}], ",", 
                    RowBox[{
+                    RowBox[{"flammability", "=", 
+                    RowBox[{"7", "-", 
+                    RowBox[{
+                    "patchProps", "[", "\"\<flammability\>\"", "]"}]}]}], ";",
+                     "\[IndentingNewLine]", 
+                    RowBox[{"heatResistance", "=", 
+                    RowBox[{
+                    "patchProps", "[", "\"\<heatResistance\>\"", "]"}]}], ";",
+                     "\[IndentingNewLine]", 
+                    RowBox[{"moistureEffect", "=", 
+                    RowBox[{"1", "-", "moisture"}]}], ";", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"ignitionChance", "=", 
+                    RowBox[{"Min", "[", 
+                    RowBox[{
+                    RowBox[{
                     RowBox[{"(", 
                     RowBox[{
                     "totalHeat", "*", "flammability", "*", "moistureEffect", "*",
                      "ignitionProbability"}], ")"}], "/", 
                     RowBox[{"(", 
                     RowBox[{"heatResistance", "*", "8"}], ")"}]}], ",", 
-                   "0.9"}], "]"}]}], ";", "\[IndentingNewLine]", 
-                RowBox[{"If", "[", 
-                 RowBox[{
-                  RowBox[{
-                   RowBox[{"RandomReal", "[", "]"}], "<", "ignitionChance"}], 
-                  ",", 
-                  RowBox[{
-                   RowBox[{"newGrid", "[", 
+                    "0.9"}], "]"}]}], ";", "\[IndentingNewLine]", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"RandomReal", "[", "]"}], "<", "ignitionChance"}],
+                     ",", 
+                    RowBox[{
+                    RowBox[{"newGrid", "[", 
                     RowBox[{"[", 
                     RowBox[{"i", ",", "j"}], "]"}], "]"}], "=", 
-                   RowBox[{"patchProps", "[", "\"\<burnTime\>\"", "]"}]}]}], 
-                 "]"}], ";"}]}], "]"}]}], "]"}]}]}], "]"}]}], ",", 
-       RowBox[{"{", 
-        RowBox[{"i", ",", "gridSize"}], "}"}], ",", 
-       RowBox[{"{", 
-        RowBox[{"j", ",", "gridSize"}], "}"}]}], "]"}], ";", 
-     "\[IndentingNewLine]", "newGrid"}]}], "]"}]}]], "Input",
- CellChangeTimes->{{3.9607312972333164`*^9, 3.9607313129091167`*^9}, {
-   3.960731353996256*^9, 3.9607313564877243`*^9}, {3.96073140213863*^9, 
-   3.9607314167015686`*^9}, {3.9607321818480606`*^9, 
-   3.9607322350213394`*^9}, {3.960732298035309*^9, 3.9607323184353733`*^9}, {
-   3.960732396009285*^9, 3.960732416705759*^9}, {3.9608813134197807`*^9, 
-   3.9608813353514137`*^9}, {3.960881374362566*^9, 3.960881374776224*^9}, {
-   3.9609725635078583`*^9, 3.960972668860792*^9}, {3.960972730514366*^9, 
-   3.9609727340503006`*^9}, {3.9610531550978775`*^9, 3.961053201829853*^9}, {
-   3.9610602647350616`*^9, 3.961060397577238*^9}, 3.961078236162508*^9, {
-   3.9611132508056755`*^9, 3.9611132628333225`*^9}, {3.961161356266527*^9, 
-   3.9611613627322235`*^9}, {3.9611619292987976`*^9, 3.9611619392986774`*^9}, 
-   3.961163490981146*^9},
- CellLabel->"In[99]:=",ExpressionUUID->"bf0ea88a-e52f-3248-ac3f-d725b7c65150"],
+                    RowBox[{"patchProps", "[", "\"\<burnTime\>\"", "]"}]}]}], 
+                    "]"}], ";"}]}], "]"}]}], "]"}]}]}], "]"}]}]}], "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"i", ",", "gridSize"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"j", ",", "gridSize"}], "}"}]}], "]"}], ";", 
+       "\[IndentingNewLine]", "newGrid"}]}], "]"}]}], ";"}], "\n"}]], "Input",\
+
+ CellChangeTimes->{{3.964152993611517*^9, 3.9641529936137247`*^9}},
+ CellLabel->
+  "In[101]:=",ExpressionUUID->"b3948862-fc5b-450a-abca-be01d1beed51"],
 
 Cell[BoxData[
  RowBox[{
@@ -1203,7 +1353,7 @@ Cell[BoxData[
    3.9610568691381607`*^9, {3.9610570265792694`*^9, 3.961057030013502*^9}, {
    3.961059462398344*^9, 3.96105951470018*^9}, 3.9611613290315094`*^9},
  CellLabel->
-  "In[100]:=",ExpressionUUID->"25564546-6bba-864e-b3ce-ae78c09daf74"],
+  "In[102]:=",ExpressionUUID->"25564546-6bba-864e-b3ce-ae78c09daf74"],
 
 Cell[BoxData[
  RowBox[{
@@ -1265,7 +1415,7 @@ Cell[BoxData[
    3.9611571910689354`*^9, 3.961157195129633*^9}, 3.9611613361552563`*^9, 
    3.9632512308381567`*^9},
  CellLabel->
-  "In[101]:=",ExpressionUUID->"b7ebc6ff-7b15-5e46-9415-d17d2acb89f7"],
+  "In[103]:=",ExpressionUUID->"b7ebc6ff-7b15-5e46-9415-d17d2acb89f7"],
 
 Cell[BoxData[
  RowBox[{
@@ -1311,7 +1461,7 @@ Cell[BoxData[
    3.961059462398344*^9, 3.9610594808719406`*^9}, 3.9610953904857044`*^9, {
    3.9611571910689354`*^9, 3.9611571914774647`*^9}, 3.961161341893038*^9},
  CellLabel->
-  "In[102]:=",ExpressionUUID->"4939bdab-b121-3b4e-9dcc-952c421ac91d"],
+  "In[104]:=",ExpressionUUID->"4939bdab-b121-3b4e-9dcc-952c421ac91d"],
 
 Cell[BoxData[{
  RowBox[{
@@ -1339,7 +1489,7 @@ Cell[BoxData[{
    3.9608824586046505`*^9}, 3.960882500531225*^9, {3.9610793033353176`*^9, 
    3.961079379380127*^9}, 3.961161275076906*^9},
  CellLabel->
-  "In[103]:=",ExpressionUUID->"db3623ff-0adc-1a45-9a39-330368b9cab0"],
+  "In[105]:=",ExpressionUUID->"db3623ff-0adc-1a45-9a39-330368b9cab0"],
 
 Cell[BoxData[{
  RowBox[{
@@ -1373,7 +1523,7 @@ Cell[BoxData[{
    3.961099991019785*^9, 3.9611511163739376`*^9, {3.9611612688435955`*^9, 
    3.961161270968628*^9}, {3.961161960540848*^9, 3.961161960764654*^9}},
  CellLabel->
-  "In[106]:=",ExpressionUUID->"a7c6b6b1-599e-4e4e-8a73-b13435879e7c"],
+  "In[108]:=",ExpressionUUID->"a7c6b6b1-599e-4e4e-8a73-b13435879e7c"],
 
 Cell[CellGroupData[{
 
@@ -1665,7 +1815,7 @@ points\>\"", "]"}], ",",
    3.9623678178476315`*^9, 3.962367866326542*^9}, {3.9623690718316956`*^9, 
    3.962369072737461*^9}, {3.963314340103853*^9, 3.9633143462170267`*^9}},
  CellLabel->
-  "In[109]:=",ExpressionUUID->"433b8f1f-f250-b441-a8db-15ef350cdd16"],
+  "In[111]:=",ExpressionUUID->"433b8f1f-f250-b441-a8db-15ef350cdd16"],
 
 Cell[BoxData[
  TemplateBox[{
@@ -1706,8 +1856,8 @@ RowBox[{RowBox[{\\\"Pattern\\\", \\\"[\\\", RowBox[{\\\"13\\\", \\\",\\\", \\\
 \"_\\\"}], \\\"]\\\"}], \\\",\\\", \\\"Automatic\\\"}], \\\"]\\\"}], \
 \\\",\\\", RowBox[{\\\"Optional\\\", \\\"[\\\", RowBox[{RowBox[{\\\"Pattern\\\
 \", \\\"[\\\", RowBox[{\\\"14\\\", \\\",\\\", \\\"_\\\"}], \\\"]\\\"}], \\\",\
-\\\", \\\"1.`\\\"}], \\\"]\\\"}]}], \\\"]\\\"}]\\).\"", 2, 109, 13, 
-   25862841998057455820, "Local"},
+\\\", \\\"1.`\\\"}], \\\"]\\\"}]}], \\\"]\\\"}]\\).\"", 2, 111, 13, 
+   25868236474181491932, "Local"},
   "MessageTemplate",
   BaseStyle->"MSG"]], "Message",
  CellChangeTimes->{
@@ -1723,10 +1873,12 @@ RowBox[{RowBox[{\\\"Pattern\\\", \\\"[\\\", RowBox[{\\\"13\\\", \\\",\\\", \\\
    3.9633143977733793`*^9, 3.9633146038008623`*^9, 3.96332797166319*^9, 
    3.963328121889558*^9, 3.963328335926527*^9, 3.963328906593665*^9, 
    3.963329260807644*^9, 3.963329395973377*^9, 3.963329787328619*^9, 
-   3.963329835444066*^9, 3.963329972445209*^9, 3.963330141206808*^9},
+   3.963329835444066*^9, 3.963329972445209*^9, 3.963330141206808*^9, 
+   3.964126743247167*^9, 3.964153499504356*^9, 3.964153754423341*^9, 
+   3.964154154943095*^9},
  CellLabel->
   "During evaluation of \
-In[109]:=",ExpressionUUID->"c96324a3-0d01-4acd-9f52-b01e393cb2a8"],
+In[111]:=",ExpressionUUID->"a655a2b6-7409-4cca-84ef-adb85307ad5e"],
 
 Cell[BoxData[
  TemplateBox[{
@@ -1767,8 +1919,8 @@ RowBox[{RowBox[{\\\"Pattern\\\", \\\"[\\\", RowBox[{\\\"13\\\", \\\",\\\", \\\
 \"_\\\"}], \\\"]\\\"}], \\\",\\\", \\\"Automatic\\\"}], \\\"]\\\"}], \
 \\\",\\\", RowBox[{\\\"Optional\\\", \\\"[\\\", RowBox[{RowBox[{\\\"Pattern\\\
 \", \\\"[\\\", RowBox[{\\\"14\\\", \\\",\\\", \\\"_\\\"}], \\\"]\\\"}], \\\",\
-\\\", \\\"1.`\\\"}], \\\"]\\\"}]}], \\\"]\\\"}]\\).\"", 2, 109, 14, 
-   25862841998057455820, "Local"},
+\\\", \\\"1.`\\\"}], \\\"]\\\"}]}], \\\"]\\\"}]\\).\"", 2, 111, 14, 
+   25868236474181491932, "Local"},
   "MessageTemplate",
   BaseStyle->"MSG"]], "Message",
  CellChangeTimes->{
@@ -1784,10 +1936,12 @@ RowBox[{RowBox[{\\\"Pattern\\\", \\\"[\\\", RowBox[{\\\"13\\\", \\\",\\\", \\\
    3.9633143977733793`*^9, 3.9633146038008623`*^9, 3.96332797166319*^9, 
    3.963328121889558*^9, 3.963328335926527*^9, 3.963328906593665*^9, 
    3.963329260807644*^9, 3.963329395973377*^9, 3.963329787328619*^9, 
-   3.963329835444066*^9, 3.963329972445209*^9, 3.963330141209881*^9},
+   3.963329835444066*^9, 3.963329972445209*^9, 3.963330141206808*^9, 
+   3.964126743247167*^9, 3.964153499504356*^9, 3.964153754423341*^9, 
+   3.964154154945644*^9},
  CellLabel->
   "During evaluation of \
-In[109]:=",ExpressionUUID->"5c0e5c61-8319-4972-93ca-dfda560669de"]
+In[111]:=",ExpressionUUID->"97d98cb2-826f-409c-bbf6-5ff63ae27cc0"]
 }, Open  ]],
 
 Cell[BoxData[
@@ -1817,61 +1971,67 @@ Cell[BoxData[
    3.961162026992628*^9}, {3.961163652467371*^9, 3.9611636558065033`*^9}, 
    3.961163811226879*^9},
  CellLabel->
-  "In[110]:=",ExpressionUUID->"864aa9b8-02af-4548-98b3-87d5a98f48f6"],
+  "In[112]:=",ExpressionUUID->"864aa9b8-02af-4548-98b3-87d5a98f48f6"],
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"updateAllFireRegions", "[", 
+  RowBox[{
    RowBox[{
-   "terrainGrids_", ",", "fireGrids_", ",", "elevationGrids_", ",", 
-    "gridSize_", ",", "numRows_", ",", "numCols_", ",", 
-    "ignitionProbability_", ",", "windSpeed_", ",", "windDirection_", ",", 
-    "moisture_", ",", "interRegionSpreadProb_", ",", "uphillMultiplier_", ",",
-     "downhillMultiplier_"}], "]"}], ":=", "\[IndentingNewLine]", 
-  "\[IndentingNewLine]", 
-  RowBox[{"Module", "[", 
-   RowBox[{
-    RowBox[{"{", "updatedGrids", "}"}], ",", 
-    RowBox[{
-     RowBox[{"updatedGrids", "=", 
-      RowBox[{"Table", "[", 
-       RowBox[{
-        RowBox[{"fireSpreadRule", "[", 
-         RowBox[{
-          RowBox[{"terrainGrids", "[", 
-           RowBox[{"[", 
-            RowBox[{"i", ",", "j"}], "]"}], "]"}], ",", 
-          RowBox[{"fireGrids", "[", 
-           RowBox[{"[", 
-            RowBox[{"i", ",", "j"}], "]"}], "]"}], ",", 
-          RowBox[{"elevationGrids", "[", 
-           RowBox[{"[", 
-            RowBox[{"i", ",", "j"}], "]"}], "]"}], ",", "gridSize", ",", 
-          "ignitionProbability", ",", "windSpeed", ",", "windDirection", ",", 
-          "moisture", ",", "uphillMultiplier", ",", "downhillMultiplier"}], 
-         "]"}], ",", 
-        RowBox[{"{", 
-         RowBox[{"i", ",", "numRows"}], "}"}], ",", 
-        RowBox[{"{", 
-         RowBox[{"j", ",", "numCols"}], "}"}]}], "]"}]}], ";", 
-     "\[IndentingNewLine]", 
-     RowBox[{"interRegionFireSpread", "[", 
+    RowBox[{"updateAllFireRegions", "[", 
+     RowBox[{
+     "terrainGrids_", ",", "fireGrids_", ",", "elevationGrids_", ",", 
+      "gridSize_", ",", "numRows_", ",", "numCols_", ",", 
+      "ignitionProbability_", ",", "windSpeed_", ",", "windDirection_", ",", 
+      "moisture_", ",", "interRegionSpreadProb_", ",", "uphillMultiplier_", ",",
+       "downhillMultiplier_", ",", 
+      RowBox[{"emberRadius_", ":", "8"}]}], "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"updatedGrids", ",", "emberField"}], "}"}], ",", 
       RowBox[{
-      "terrainGrids", ",", "updatedGrids", ",", "gridSize", ",", "numRows", ",",
-        "numCols", ",", "interRegionSpreadProb", ",", "windSpeed"}], 
-      "]"}]}]}], "]"}]}]], "Input",
- CellChangeTimes->{{3.9607367581890583`*^9, 3.9607367637069817`*^9}, {
-   3.9608215289614925`*^9, 3.9608215296641026`*^9}, {3.960851012459898*^9, 
-   3.960851014905298*^9}, {3.960853507953272*^9, 3.960853567474924*^9}, {
-   3.960882069985775*^9, 3.9608820703017673`*^9}, {3.9608822893224125`*^9, 
-   3.960882294561611*^9}, {3.9608823687401543`*^9, 3.9608823766538296`*^9}, {
-   3.9608824979550247`*^9, 3.960882498579052*^9}, {3.960882550603531*^9, 
-   3.9608825892607193`*^9}, {3.9608826200954094`*^9, 3.960882668139206*^9}, {
-   3.9610800357627487`*^9, 3.9610800676855316`*^9}, 3.9610954506060543`*^9, {
-   3.961146433585226*^9, 3.9611464342639084`*^9}, 3.96116137437595*^9, {
-   3.961162030923668*^9, 3.9611620336377506`*^9}},
+       RowBox[{"updatedGrids", "=", 
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"emberField", "=", 
+            RowBox[{"emberHeatField", "[", 
+             RowBox[{
+              RowBox[{"terrainGrids", "[", 
+               RowBox[{"[", 
+                RowBox[{"i", ",", "j"}], "]"}], "]"}], ",", 
+              RowBox[{"fireGrids", "[", 
+               RowBox[{"[", 
+                RowBox[{"i", ",", "j"}], "]"}], "]"}], ",", "windDirection", ",",
+               "windSpeed", ",", "emberRadius"}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"fireSpreadRuleWithEmbers", "[", 
+            RowBox[{
+             RowBox[{"terrainGrids", "[", 
+              RowBox[{"[", 
+               RowBox[{"i", ",", "j"}], "]"}], "]"}], ",", 
+             RowBox[{"fireGrids", "[", 
+              RowBox[{"[", 
+               RowBox[{"i", ",", "j"}], "]"}], "]"}], ",", 
+             RowBox[{"elevationGrids", "[", 
+              RowBox[{"[", 
+               RowBox[{"i", ",", "j"}], "]"}], "]"}], ",", "gridSize", ",", 
+             "ignitionProbability", ",", "windSpeed", ",", "windDirection", ",",
+              "moisture", ",", "uphillMultiplier", ",", "downhillMultiplier", 
+             ",", "emberField"}], "]"}]}], ",", 
+          RowBox[{"{", 
+           RowBox[{"i", ",", "numRows"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"j", ",", "numCols"}], "}"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"interRegionFireSpread", "[", 
+        RowBox[{
+        "terrainGrids", ",", "updatedGrids", ",", "gridSize", ",", "numRows", 
+         ",", "numCols", ",", "interRegionSpreadProb", ",", "windSpeed"}], 
+        "]"}]}]}], "]"}]}], ";"}], "\n"}]], "Input",
+ CellChangeTimes->{{3.964153007608007*^9, 3.964153007610579*^9}},
  CellLabel->
-  "In[111]:=",ExpressionUUID->"b57be835-7274-284e-8bbd-78ecb467ffef"],
+  "In[113]:=",ExpressionUUID->"e02be539-e7e9-4b36-a325-ddabfb0e00bb"],
 
 Cell[BoxData[
  RowBox[{
@@ -1942,15 +2102,52 @@ Cell[BoxData[
      RowBox[{"fireHistory", "=", 
       RowBox[{"NestList", "[", 
        RowBox[{
-        RowBox[{
-         RowBox[{"updateAllFireRegions", "[", 
-          RowBox[{
-          "terrainGrids", ",", "#", ",", "elevationGrids", ",", "gridSize", ",",
-            "numRows", ",", "numCols", ",", "ignitionProbability", ",", 
-           "windSpeed", ",", "windDirection", ",", "moisture", ",", 
-           "interRegionSpreadProb", ",", "uphillMultiplier", ",", 
-           "downhillMultiplier"}], "]"}], "&"}], ",", "fireGrids", ",", 
-        "timeSteps"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"Function", "[", 
+         RowBox[{"fireG", ",", 
+          RowBox[{"Module", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"tg4", ",", "eg4", ",", "fg4", ",", "upd"}], "}"}], ",", 
+            
+            RowBox[{
+             RowBox[{"tg4", "=", 
+              RowBox[{"{", 
+               RowBox[{"{", "terrainGrid", "}"}], "}"}]}], ";", 
+             RowBox[{"(*", 
+              RowBox[{"1", "\[Times]", "1", " ", "region", " ", "wrap"}], 
+              "*)"}], 
+             RowBox[{"eg4", "=", 
+              RowBox[{"{", 
+               RowBox[{"{", "elevationGrid", "}"}], "}"}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"fg4", "=", 
+              RowBox[{"{", 
+               RowBox[{"{", "fireG", "}"}], "}"}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"upd", "=", 
+              RowBox[{"updateAllFireRegions", "[", 
+               RowBox[{
+               "tg4", ",", "fg4", ",", "eg4", ",", "gridSize", ",", "1", ",", 
+                "1", ",", "ignitionProbability", ",", "windSpeed", ",", 
+                "windDirection", ",", "moisture", ",", "0.0", ",", 
+                RowBox[{"(*", 
+                 RowBox[{"interRegionSpreadProb", " ", 
+                  RowBox[{"(", 
+                   RowBox[{"unused", " ", "for", " ", "1", "\[Times]", "1"}], 
+                   ")"}]}], "*)"}], "uphillMultiplier", ",", 
+                "downhillMultiplier"}], "\[IndentingNewLine]", 
+               RowBox[{"(*", 
+                RowBox[{
+                "emberRadius", " ", "uses", " ", "default", " ", "8"}], 
+                "*)"}], "]"}]}], ";", "\[IndentingNewLine]", 
+             RowBox[{"upd", "[", 
+              RowBox[{"[", 
+               RowBox[{"1", ",", "1"}], "]"}], "]"}]}]}], 
+           "                      ", 
+           RowBox[{"(*", 
+            RowBox[{"unwrap", " ", "back", " ", "to", " ", "2", "D"}], "*)"}],
+            "]"}]}], "]"}], ",", "fireGrid", ",", "timeSteps"}], "]"}]}], ";",
+      "\n", "\[IndentingNewLine]", 
      RowBox[{"animationFrames", "=", 
       RowBox[{"Table", "[", 
        RowBox[{
@@ -2074,9 +2271,10 @@ Cell[BoxData[
    3.961163691530527*^9, 3.96116370751676*^9}, {3.9611651729529667`*^9, 
    3.961165180546465*^9}, {3.9611708903473186`*^9, 3.9611708948916054`*^9}, {
    3.962365924054616*^9, 3.962365929123822*^9}, {3.962368139511631*^9, 
-   3.96236816525861*^9}},
+   3.96236816525861*^9}, {3.9641534109660788`*^9, 3.9641534300015306`*^9}, {
+   3.964153468650812*^9, 3.964153487794647*^9}},
  CellLabel->
-  "In[112]:=",ExpressionUUID->"1e9b58e1-29de-e840-b218-820a4b0d6c52"],
+  "In[114]:=",ExpressionUUID->"1e9b58e1-29de-e840-b218-820a4b0d6c52"],
 
 Cell[BoxData[
  RowBox[{
@@ -2131,7 +2329,7 @@ Cell[BoxData[
    3.9610954691931095`*^9}, {3.961113296377268*^9, 3.961113332494068*^9}, {
    3.961150635190424*^9, 3.961150651097946*^9}},
  CellLabel->
-  "In[113]:=",ExpressionUUID->"e2ccba17-ac1c-c549-9317-d0b3d0fee38d"],
+  "In[115]:=",ExpressionUUID->"e2ccba17-ac1c-c549-9317-d0b3d0fee38d"],
 
 Cell[BoxData[
  RowBox[{
@@ -2205,7 +2403,7 @@ Cell[BoxData[
    3.961057602644438*^9}, 3.9610639557984505`*^9, 3.961147618455822*^9, 
    3.961147945441929*^9},
  CellLabel->
-  "In[114]:=",ExpressionUUID->"df968b51-9824-0a4d-9a4d-5a2a460619c2"],
+  "In[116]:=",ExpressionUUID->"df968b51-9824-0a4d-9a4d-5a2a460619c2"],
 
 Cell[BoxData[
  RowBox[{
@@ -2305,7 +2503,7 @@ Cell[BoxData[
    3.963329635618353*^9, 3.96332974706528*^9}, 3.963329968726355*^9, 
    3.9633301332960167`*^9},
  CellLabel->
-  "In[115]:=",ExpressionUUID->"9bbdbf82-3b0c-3442-ab88-24b71fac3113"],
+  "In[117]:=",ExpressionUUID->"9bbdbf82-3b0c-3442-ab88-24b71fac3113"],
 
 Cell[BoxData[
  RowBox[{
@@ -2388,7 +2586,12 @@ Cell[BoxData[
      "\[IndentingNewLine]", 
      RowBox[{"Graphics3D", "[", 
       RowBox[{
-       RowBox[{"Flatten", "[", "voxelData", "]"}], ",", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"EdgeForm", "[", "None", "]"}], ",", 
+          RowBox[{"Flatten", "[", "voxelData", "]"}]}], "}"}], "//", 
+        "Flatten"}], ",", 
        RowBox[{"Axes", "->", "True"}], ",", 
        RowBox[{"AxesLabel", "->", 
         RowBox[{"{", 
@@ -2401,10 +2604,14 @@ Cell[BoxData[
          RowBox[{"2", ",", 
           RowBox[{"-", "2"}], ",", "1.5"}], "}"}]}], ",", 
        RowBox[{"Lighting", "->", "\"\<Neutral\>\""}], ",", 
-       RowBox[{"ImageSize", "->", "Large"}]}], "]"}]}]}], "]"}]}]], "Input",
- CellChangeTimes->{{3.963328312765808*^9, 3.9633283142734213`*^9}},
+       RowBox[{"ImageSize", "->", "Large"}], ",", 
+       RowBox[{"Boxed", "->", "False"}]}], "]"}]}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.963328312765808*^9, 3.9633283142734213`*^9}, {
+   3.96412664546509*^9, 3.964126650772501*^9}, 3.964126735508215*^9, {
+   3.964153561844322*^9, 3.964153579396743*^9}, {3.9641536389627857`*^9, 
+   3.964153647817565*^9}, {3.96415371629185*^9, 3.964153747502191*^9}},
  CellLabel->
-  "In[116]:=",ExpressionUUID->"ae38ac6d-4925-4cd2-9f29-341233abbe96"],
+  "In[118]:=",ExpressionUUID->"ae38ac6d-4925-4cd2-9f29-341233abbe96"],
 
 Cell[BoxData[
  RowBox[{
@@ -2534,7 +2741,7 @@ Cell[BoxData[
        RowBox[{"ImageSize", "->", "Large"}]}], "]"}]}]}], "]"}]}]], "Input",
  CellChangeTimes->{{3.963313362117654*^9, 3.963313363737154*^9}},
  CellLabel->
-  "In[117]:=",ExpressionUUID->"2802e3a5-c6db-4d98-9ab1-b11cc2da101e"],
+  "In[119]:=",ExpressionUUID->"2802e3a5-c6db-4d98-9ab1-b11cc2da101e"],
 
 Cell[BoxData[
  RowBox[{
@@ -2629,7 +2836,7 @@ Cell[BoxData[
    3.962365691189455*^9}, {3.9623680719788513`*^9, 3.962368088679596*^9}, {
    3.962369035975401*^9, 3.9623690505127106`*^9}},
  CellLabel->
-  "In[118]:=",ExpressionUUID->"599bf2ab-016f-2d4b-8f64-48159cb8d469"],
+  "In[120]:=",ExpressionUUID->"599bf2ab-016f-2d4b-8f64-48159cb8d469"],
 
 Cell[BoxData[
  RowBox[{
@@ -2697,7 +2904,7 @@ Cell[BoxData[
    3.9623683141279926`*^9}, {3.9623686405105133`*^9, 3.9623686432404785`*^9}},
  
  CellLabel->
-  "In[119]:=",ExpressionUUID->"2ac75469-9924-d84d-ad47-42231ee57918"],
+  "In[121]:=",ExpressionUUID->"2ac75469-9924-d84d-ad47-42231ee57918"],
 
 Cell[BoxData[
  RowBox[{
@@ -2905,14 +3112,52 @@ points\>\"", "]"}], ",",
      RowBox[{"fireHistory", "=", 
       RowBox[{"NestList", "[", 
        RowBox[{
-        RowBox[{
-         RowBox[{"fireSpreadRule", "[", 
-          RowBox[{
-          "terrainGrid", ",", "#", ",", "elevationGrid", ",", "gridSize", ",",
-            "ignitionProbability", ",", "windSpeed", ",", "windDirection", ",",
-            "moisture", ",", "uphillMultiplier", ",", "downhillMultiplier"}], 
-          "]"}], "&"}], ",", "fireGrid", ",", "timeSteps"}], "]"}]}], ";", 
-     "\[IndentingNewLine]", 
+        RowBox[{"Function", "[", 
+         RowBox[{"fg", ",", 
+          RowBox[{"Module", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"tg4", ",", "eg4", ",", "fg4", ",", "upd"}], "}"}], ",", 
+            
+            RowBox[{
+             RowBox[{"tg4", "=", 
+              RowBox[{"{", 
+               RowBox[{"{", "terrainGrid", "}"}], "}"}]}], ";", 
+             RowBox[{"(*", 
+              RowBox[{"1", "\[Times]", "1", " ", "region", " ", "wrap"}], 
+              "*)"}], 
+             RowBox[{"eg4", "=", 
+              RowBox[{"{", 
+               RowBox[{"{", "elevationGrid", "}"}], "}"}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"fg4", "=", 
+              RowBox[{"{", 
+               RowBox[{"{", "fg", "}"}], "}"}]}], ";", "\[IndentingNewLine]", 
+             
+             RowBox[{"upd", "=", 
+              RowBox[{"updateAllFireRegions", "[", 
+               RowBox[{
+               "tg4", ",", "fg4", ",", "eg4", ",", "gridSize", ",", "1", ",", 
+                "1", ",", "ignitionProbability", ",", "windSpeed", ",", 
+                "windDirection", ",", "moisture", ",", "0.0", ",", 
+                RowBox[{"(*", 
+                 RowBox[{"interRegionSpreadProb", " ", 
+                  RowBox[{"(", 
+                   RowBox[{"unused", " ", "for", " ", "1", "\[Times]", "1"}], 
+                   ")"}]}], "*)"}], "uphillMultiplier", ",", 
+                "downhillMultiplier"}], "\[IndentingNewLine]", 
+               RowBox[{"(*", 
+                RowBox[{
+                "emberRadius", " ", "uses", " ", "default", " ", "8"}], 
+                "*)"}], "]"}]}], ";", "\[IndentingNewLine]", 
+             RowBox[{"upd", "[", 
+              RowBox[{"[", 
+               RowBox[{"1", ",", "1"}], "]"}], "]"}]}]}], 
+           "                      ", 
+           RowBox[{"(*", 
+            RowBox[{"unwrap", " ", "back", " ", "to", " ", "2", "D"}], "*)"}],
+            "]"}]}], "]"}], ",", "fireGrid", ",", "timeSteps"}], "]"}]}], ";",
+      "\[IndentingNewLine]", 
      RowBox[{"animation3D", "=", 
       RowBox[{"Table", "[", 
        RowBox[{
@@ -2979,9 +3224,10 @@ points\>\"", "]"}], ",",
    3.961064789079359*^9, 3.9610648858194237`*^9}, 3.961080866263054*^9, 
    3.9610810281542835`*^9, 3.9610842765115337`*^9, {3.962337308401782*^9, 
    3.962337310825856*^9}, {3.9623683219370728`*^9, 3.9623683264609528`*^9}, {
-   3.96236835719973*^9, 3.962368358205181*^9}},
+   3.96236835719973*^9, 3.962368358205181*^9}, {3.9641540883327303`*^9, 
+   3.964154089741171*^9}},
  CellLabel->
-  "In[120]:=",ExpressionUUID->"cdf089a7-25fc-534c-8f37-a105b4d01e6b"],
+  "In[122]:=",ExpressionUUID->"cdf089a7-25fc-534c-8f37-a105b4d01e6b"],
 
 Cell[BoxData[
  RowBox[{
@@ -3239,7 +3485,7 @@ Cell[BoxData[
    3.9611034983636284`*^9}, 3.9611431351609592`*^9, {3.9611432042830353`*^9, 
    3.96114324507963*^9}},
  CellLabel->
-  "In[121]:=",ExpressionUUID->"368c5096-3ebc-f84e-b373-2814b5984bd5"],
+  "In[123]:=",ExpressionUUID->"368c5096-3ebc-f84e-b373-2814b5984bd5"],
 
 Cell[BoxData[
  RowBox[{
@@ -3297,7 +3543,7 @@ Cell[BoxData[
    3.9611434513929977`*^9, 3.9611434572628555`*^9}, {3.961143506686657*^9, 
    3.961143532319439*^9}, 3.961162207319044*^9},
  CellLabel->
-  "In[122]:=",ExpressionUUID->"2959dc27-2a5e-7e48-b08b-d5abeccb9d0b"],
+  "In[124]:=",ExpressionUUID->"2959dc27-2a5e-7e48-b08b-d5abeccb9d0b"],
 
 Cell[BoxData[
  RowBox[{
@@ -3346,12 +3592,12 @@ Cell[BoxData[
    3.961143484972645*^9, 3.9611434866016903`*^9}, 3.961166537662548*^9, {
    3.9623683737997036`*^9, 3.962368378468233*^9}, 3.962411188264433*^9},
  CellLabel->
-  "In[123]:=",ExpressionUUID->"39622a8d-f5f5-c140-b1d6-1ba0ad41036b"]
+  "In[125]:=",ExpressionUUID->"39622a8d-f5f5-c140-b1d6-1ba0ad41036b"]
 },
 WindowSize->{1026, 927},
-WindowMargins->{{Automatic, 0}, {Automatic, 0}},
+WindowMargins->{{Automatic, 46}, {Automatic, 0}},
 Magnification:>1.1 Inherited,
-FrontEndVersion->"14.2 for Mac OS X ARM (64-bit) (March 16, 2025)",
+FrontEndVersion->"14.3 for Mac OS X ARM (64-bit) (July 8, 2025)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"468298ce-fc02-dc43-8fee-3233b58223fc"
 ]
@@ -3378,31 +3624,32 @@ Cell[22405, 591, 3461, 81, 279, "Input",ExpressionUUID->"8efdc0f2-844d-4199-9238
 Cell[25869, 674, 3229, 69, 346, "Input",ExpressionUUID->"15a996ff-97ba-fe4f-ba42-7a8539a08c4c"],
 Cell[29101, 745, 6206, 130, 728, "Input",ExpressionUUID->"1bcc62c0-2646-4f2b-adb5-69ebbb3730ad"],
 Cell[35310, 877, 1820, 41, 122, "Input",ExpressionUUID->"a4fce2ce-228f-1c43-9b68-d5e7ac4ba401"],
-Cell[37133, 920, 11761, 264, 751, "Input",ExpressionUUID->"bf0ea88a-e52f-3248-ac3f-d725b7c65150"],
-Cell[48897, 1186, 1044, 19, 54, "Input",ExpressionUUID->"25564546-6bba-864e-b3ce-ae78c09daf74"],
-Cell[49944, 1207, 2549, 60, 122, "Input",ExpressionUUID->"b7ebc6ff-7b15-5e46-9415-d17d2acb89f7"],
-Cell[52496, 1269, 1919, 44, 144, "Input",ExpressionUUID->"4939bdab-b121-3b4e-9dcc-952c421ac91d"],
-Cell[54418, 1315, 1189, 26, 77, "Input",ExpressionUUID->"db3623ff-0adc-1a45-9a39-330368b9cab0"],
-Cell[55610, 1343, 1447, 32, 77, "Input",ExpressionUUID->"a7c6b6b1-599e-4e4e-8a73-b13435879e7c"],
+Cell[37133, 920, 4166, 113, 301, "Input",ExpressionUUID->"dfc5ae06-a454-4aa6-a3af-7868802cee2d"],
+Cell[41302, 1035, 13006, 299, 998, "Input",ExpressionUUID->"b3948862-fc5b-450a-abca-be01d1beed51"],
+Cell[54311, 1336, 1044, 19, 54, "Input",ExpressionUUID->"25564546-6bba-864e-b3ce-ae78c09daf74"],
+Cell[55358, 1357, 2549, 60, 122, "Input",ExpressionUUID->"b7ebc6ff-7b15-5e46-9415-d17d2acb89f7"],
+Cell[57910, 1419, 1919, 44, 144, "Input",ExpressionUUID->"4939bdab-b121-3b4e-9dcc-952c421ac91d"],
+Cell[59832, 1465, 1189, 26, 77, "Input",ExpressionUUID->"db3623ff-0adc-1a45-9a39-330368b9cab0"],
+Cell[61024, 1493, 1447, 32, 77, "Input",ExpressionUUID->"a7c6b6b1-599e-4e4e-8a73-b13435879e7c"],
 Cell[CellGroupData[{
-Cell[57082, 1379, 12938, 288, 908, "Input",ExpressionUUID->"433b8f1f-f250-b441-a8db-15ef350cdd16"],
-Cell[70023, 1669, 4015, 59, 82, "Message",ExpressionUUID->"c96324a3-0d01-4acd-9f52-b01e393cb2a8"],
-Cell[74041, 1730, 4015, 59, 82, "Message",ExpressionUUID->"5c0e5c61-8319-4972-93ca-dfda560669de"]
+Cell[62496, 1529, 12938, 288, 908, "Input",ExpressionUUID->"433b8f1f-f250-b441-a8db-15ef350cdd16"],
+Cell[75437, 1819, 4111, 61, 82, "Message",ExpressionUUID->"a655a2b6-7409-4cca-84ef-adb85307ad5e"],
+Cell[79551, 1882, 4111, 61, 82, "Message",ExpressionUUID->"97d98cb2-826f-409c-bbf6-5ff63ae27cc0"]
 }, Open  ]],
-Cell[78071, 1792, 1538, 27, 99, "Input",ExpressionUUID->"864aa9b8-02af-4548-98b3-87d5a98f48f6"],
-Cell[79612, 1821, 2492, 52, 234, "Input",ExpressionUUID->"b57be835-7274-284e-8bbd-78ecb467ffef"],
-Cell[82107, 1875, 9182, 203, 818, "Input",ExpressionUUID->"1e9b58e1-29de-e840-b218-820a4b0d6c52"],
-Cell[91292, 2080, 2567, 53, 189, "Input",ExpressionUUID->"e2ccba17-ac1c-c549-9317-d0b3d0fee38d"],
-Cell[93862, 2135, 3100, 72, 234, "Input",ExpressionUUID->"df968b51-9824-0a4d-9a4d-5a2a460619c2"],
-Cell[96965, 2209, 4105, 98, 234, "Input",ExpressionUUID->"9bbdbf82-3b0c-3442-ab88-24b71fac3113"],
-Cell[101073, 2309, 3673, 97, 301, "Input",ExpressionUUID->"ae38ac6d-4925-4cd2-9f29-341233abbe96"],
-Cell[104749, 2408, 4746, 128, 234, "Input",ExpressionUUID->"2802e3a5-c6db-4d98-9ab1-b11cc2da101e"],
-Cell[109498, 2538, 4502, 93, 301, "Input",ExpressionUUID->"599bf2ab-016f-2d4b-8f64-48159cb8d469"],
-Cell[114003, 2633, 3200, 66, 256, "Input",ExpressionUUID->"2ac75469-9924-d84d-ad47-42231ee57918"],
-Cell[117206, 2701, 12409, 282, 953, "Input",ExpressionUUID->"cdf089a7-25fc-534c-8f37-a105b4d01e6b"],
-Cell[129618, 2985, 10531, 256, 593, "Input",ExpressionUUID->"368c5096-3ebc-f84e-b373-2814b5984bd5"],
-Cell[140152, 3243, 2704, 56, 256, "Input",ExpressionUUID->"2959dc27-2a5e-7e48-b08b-d5abeccb9d0b"],
-Cell[142859, 3301, 2275, 47, 189, "Input",ExpressionUUID->"39622a8d-f5f5-c140-b1d6-1ba0ad41036b"]
+Cell[83677, 1946, 1538, 27, 99, "Input",ExpressionUUID->"864aa9b8-02af-4548-98b3-87d5a98f48f6"],
+Cell[85218, 1975, 2535, 58, 301, "Input",ExpressionUUID->"e02be539-e7e9-4b36-a325-ddabfb0e00bb"],
+Cell[87756, 2035, 10834, 241, 931, "Input",ExpressionUUID->"1e9b58e1-29de-e840-b218-820a4b0d6c52"],
+Cell[98593, 2278, 2567, 53, 189, "Input",ExpressionUUID->"e2ccba17-ac1c-c549-9317-d0b3d0fee38d"],
+Cell[101163, 2333, 3100, 72, 234, "Input",ExpressionUUID->"df968b51-9824-0a4d-9a4d-5a2a460619c2"],
+Cell[104266, 2407, 4105, 98, 234, "Input",ExpressionUUID->"9bbdbf82-3b0c-3442-ab88-24b71fac3113"],
+Cell[108374, 2507, 4090, 106, 324, "Input",ExpressionUUID->"ae38ac6d-4925-4cd2-9f29-341233abbe96"],
+Cell[112467, 2615, 4746, 128, 234, "Input",ExpressionUUID->"2802e3a5-c6db-4d98-9ab1-b11cc2da101e"],
+Cell[117216, 2745, 4502, 93, 301, "Input",ExpressionUUID->"599bf2ab-016f-2d4b-8f64-48159cb8d469"],
+Cell[121721, 2840, 3200, 66, 256, "Input",ExpressionUUID->"2ac75469-9924-d84d-ad47-42231ee57918"],
+Cell[124924, 2908, 14088, 321, 1065, "Input",ExpressionUUID->"cdf089a7-25fc-534c-8f37-a105b4d01e6b"],
+Cell[139015, 3231, 10531, 256, 593, "Input",ExpressionUUID->"368c5096-3ebc-f84e-b373-2814b5984bd5"],
+Cell[149549, 3489, 2704, 56, 256, "Input",ExpressionUUID->"2959dc27-2a5e-7e48-b08b-d5abeccb9d0b"],
+Cell[152256, 3547, 2275, 47, 189, "Input",ExpressionUUID->"39622a8d-f5f5-c140-b1d6-1ba0ad41036b"]
 }
 ]
 *)
